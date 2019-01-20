@@ -1,4 +1,5 @@
 @extends('layout')
+@section('title', 'Blog')
 
 @section('content')
     <div class="row justify-content-center py-5">

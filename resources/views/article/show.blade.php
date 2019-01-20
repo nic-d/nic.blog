@@ -1,4 +1,5 @@
 @extends('layout')
+@section('title', $article->title)
 
 @section('content')
     <div class="row justify-content-center py-5">
