@@ -14,5 +14,5 @@
 Route::namespace('Article')->group(function () {
     // Controllers Within The "App\Http\Controllers\Article" Namespace
     Route::get('/', 'ArticleController@index')->name('article.index');
-    Route::get('/{article}', 'ArticleController@show')->name('article.show');
+    Route::get('/article/{slug}', 'ArticleController@show')->name('article.show');
 });

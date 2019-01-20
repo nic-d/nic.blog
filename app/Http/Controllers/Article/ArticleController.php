@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
+use League\CommonMark\ConverterInterface;
 
 /**
  * Class ArticleController
@@ -14,6 +15,18 @@ use Illuminate\Contracts\View\Factory;
  */
 class ArticleController extends Controller
 {
+    /** @var ConverterInterface $converter */
+    private $converter;
+
+    /**
+     * ArticleController constructor.
+     * @param ConverterInterface $converter
+     */
+    public function __construct(ConverterInterface $converter)
+    {
+        $this->converter = $converter;
+    }
+
     /**
      * @return Factory|View
      */
@@ -24,11 +37,17 @@ class ArticleController extends Controller
     }
 
     /**
-     * @param Article $article
+     * @param string $slug
      * @return Factory|View
      */
-    public function show(Article $article)
+    public function show(string $slug)
     {
-        return view('article.show', compact('article'));
+        /** @var Article $article */
+        $article = Article::where('slug', $slug)->first();
+
+        return view('article.show', [
+            'article' => $article,
+            'markdown' => $this->converter->convertToHtml($article->markdown),
+        ]);
     }
 }

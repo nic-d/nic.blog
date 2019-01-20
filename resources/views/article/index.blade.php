@@ -8,7 +8,7 @@
                 @foreach($articles as $article)
                     <div class="col-12">
                         <div class="post-preview">
-                            <a href="">
+                            <a href="{{ route('article.show', $article->slug) }}">
                                 <h2 class="post-title">
                                     Man must explore, and this is exploration at its greatest
                                 </h2>

@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <a href="https://github.com/nic-d">
+                <a href="{{ route('article.index') }}">
                     <img src="https://avatars1.githubusercontent.com/u/10170571?s=460&v=4" class="img-thumbnail rounded-circle" style="height: 200px" alt="Nic Davies Profile Image">
                     <h1>Nic Davies</h1>
                 </a>
