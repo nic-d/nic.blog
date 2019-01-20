@@ -11,6 +11,16 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <style>
+        .post-preview {
+            margin-bottom: 3em;
+        }
+
+        .post-preview > a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body class="py-4">
     <div class="container">

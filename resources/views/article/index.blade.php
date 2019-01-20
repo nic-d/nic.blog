@@ -9,21 +9,20 @@
                     <div class="col-12">
                         <div class="post-preview">
                             <a href="{{ route('article.show', $article->slug) }}">
-                                <h2 class="post-title">
-                                    Man must explore, and this is exploration at its greatest
-                                </h2>
-                                <h3 class="post-subtitle">
-                                    Problems look mighty small from 150 miles up
-                                </h3>
+                                <h2 class="post-title">{{ $article->title }}</h2>
                             </a>
 
-                            <p class="post-meta">Posted on January 19th, 2019</p>
+                            <p class="post-meta">Posted on {{ date('F m, Y', $article->created_at->timestamp) }}</p>
                         </div>
                     </div>
                 @endforeach
-
-                {{ $articles->links() }}
             </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-6">
+            {{ $articles->links() }}
         </div>
     </div>
 @stop
