@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use App\Http\Repository\TopicRepository;
+use App\Http\Repository\ArticleRepository;
 
 /**
  * Class TopicController
@@ -33,6 +34,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        return view('topic.show', compact('topic'));
+        $articles = $this->topicRepository->getArticlesForTopic($topic);
+        return view('topic.show', compact('topic', 'articles'));
     }
 }
