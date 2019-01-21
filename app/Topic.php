@@ -30,6 +30,14 @@ class Topic extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * @return HasMany
      */
     public function articles()
