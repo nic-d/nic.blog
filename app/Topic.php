@@ -34,6 +34,6 @@ class Topic extends Model
      */
     public function articles()
     {
-        return $this->hasMany('article');
+        return $this->hasMany(Article::class);
     }
 }
