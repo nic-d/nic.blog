@@ -45,6 +45,10 @@ class ArticleController extends Controller
         /** @var Article $article */
         $article = Article::where('slug', $slug)->first();
 
+        if (is_null($article)) {
+            abort(404);
+        }
+
         return view('article.show', [
             'article' => $article,
             'markdown' => $this->converter->convertToHtml($article->markdown),
