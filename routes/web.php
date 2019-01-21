@@ -28,3 +28,17 @@ Route::namespace('Article')->group(function () {
         Route::delete('crud/article/{article}/destroy', 'ArticleCrudController@destroy')->name('article.crud.destroy');
     });
 });
+
+Route::namespace('Topic')->group(function () {
+    Route::get('/topic/{topic}', 'TopicController@show')->name('topic.show');
+
+    // Topic CRUD routes
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('crud/topic', 'TopicCrudController@index')->name('topic.crud.index');
+        Route::get('crud/topic/create', 'TopicCrudController@create')->name('topic.crud.create');
+        Route::post('crud/topic/store', 'TopicCrudController@store')->name('topic.crud.store');
+        Route::get('crud/topic/{article}/edit', 'TopicCrudController@edit')->name('topic.crud.edit');
+        Route::patch('crud/topic/{article}/update', 'TopicCrudController@update')->name('topic.crud.update');
+        Route::delete('crud/topic/{article}/destroy', 'TopicCrudController@destroy')->name('topic.crud.destroy');
+    });
+});

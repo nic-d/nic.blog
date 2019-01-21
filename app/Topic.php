@@ -4,18 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Article
+ * Class Topic
  * @package App
  */
-class Article extends Model
+class Topic extends Model
 {
     use Sluggable;
 
     /** @var array $fillable */
-    protected $fillable = ['title', 'markdown'];
+    protected $fillable = ['name'];
 
     /**
      * @return array
@@ -24,16 +24,16 @@ class Article extends Model
     {
         return [
             'slug' => [
-                'source' => 'title',
+                'source' => 'name',
             ],
         ];
     }
 
     /**
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function topic()
+    public function articles()
     {
-        return $this->belongsTo('topic');
+        return $this->hasMany('article');
     }
 }
