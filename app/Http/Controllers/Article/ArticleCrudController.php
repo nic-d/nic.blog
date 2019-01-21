@@ -15,7 +15,7 @@ class ArticleCrudController extends Controller
 {
     public function index()
     {
-
+        return 'hello world';
     }
 
     public function create()

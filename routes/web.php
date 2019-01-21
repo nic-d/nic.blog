@@ -11,8 +11,16 @@
 |
 */
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::namespace('Article')->group(function () {
     // Controllers Within The "App\Http\Controllers\Article" Namespace
     Route::get('/', 'ArticleController@index')->name('article.index');
     Route::get('/article/{slug}', 'ArticleController@show')->name('article.show');
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('crud/article', 'ArticleCrudController@index')->name('article.crud.index');
+        Route::get('crud/article/{slug}', 'ArticleCrudController@show')->name('article.crud.show');
+    });
 });
