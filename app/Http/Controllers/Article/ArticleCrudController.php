@@ -22,7 +22,7 @@ class ArticleCrudController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate();
+        $articles = Article::orderBy('id', 'desc')->paginate();
         return view('article.crud.index', compact('articles'));
     }
 
