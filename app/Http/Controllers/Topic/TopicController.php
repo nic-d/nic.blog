@@ -33,8 +33,6 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        dd($topic->articles());
-
         return view('topic.show', compact('topic'));
     }
 }
