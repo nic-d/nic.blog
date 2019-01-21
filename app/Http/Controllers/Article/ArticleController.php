@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Article;
 
-use App\Article;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,7 +40,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('id', 'desc')->paginate();
+        $articles = $this->articleRepository->getModel()::orderBy('id', 'desc')->paginate();
         return view('article/index', compact('articles'));
     }
 
@@ -51,8 +50,7 @@ class ArticleController extends Controller
      */
     public function show(string $slug)
     {
-        /** @var Article $article */
-        $article = Article::where('slug', $slug)->first();
+        $article = $this->articleRepository->findOneBy('slug', $slug);
 
         if (is_null($article)) {
             abort(404);
