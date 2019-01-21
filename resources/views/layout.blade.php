@@ -43,9 +43,11 @@
                     <img src="https://avatars1.githubusercontent.com/u/10170571?s=460&v=4" class="img-thumbnail rounded-circle" style="height: 200px" alt="Nic Davies Profile Image">
                     <h1>Nic Davies</h1>
                     <ul class="list-inline">
-                        <li class="list-inline-item"><a href="">code</a></li>
-                        <li class="list-inline-item"><a href="">techno</a></li>
-                        <li class="list-inline-item"><a href="">vinyl</a></li>
+                        @foreach ($topics as $topic)
+                            <li class="list-inline-item">
+                                <a href="{{ route('topic.show', $topic) }}">{{ $topic->name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </a>
             </div>

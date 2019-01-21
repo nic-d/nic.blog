@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class TopicRequest
+ * @package App\Http\Requests
+ */
 class TopicRequest extends FormRequest
 {
     /**
@@ -13,7 +17,7 @@ class TopicRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +28,7 @@ class TopicRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
         ];
     }
 }
