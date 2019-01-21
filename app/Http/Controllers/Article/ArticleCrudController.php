@@ -35,8 +35,7 @@ class ArticleCrudController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('id', 'desc')->paginate();
-//        $articles = $this->articleRepository->paginate();
+        $articles = $this->articleRepository->getModel()::orderBy('id', 'desc')->paginate();
         return view('article.crud.index', compact('articles'));
     }
 
