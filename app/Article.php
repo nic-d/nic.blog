@@ -13,6 +13,9 @@ class Article extends Model
 {
     use Sluggable;
 
+    /** @var array $fillable */
+    protected $fillable = ['title', 'markdown'];
+
     /**
      * @return array
      */

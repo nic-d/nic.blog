@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Article;
 
 use App\Article;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\ArticleRequest;
+use Illuminate\Contracts\View\Factory;
 
 /**
  * Class ArticleCrudController
@@ -13,24 +17,40 @@ use App\Http\Controllers\Controller;
  */
 class ArticleCrudController extends Controller
 {
+    /**
+     * @return Factory|View
+     */
     public function index()
     {
-        return 'hello world';
+        $articles = Article::paginate();
+        return view('article.crud.index', compact('articles'));
     }
 
+    /**
+     * @return Factory|View
+     */
     public function create()
     {
-
+        return view('article.crud.create');
     }
 
-    public function store(Request $request)
+    /**
+     * @param ArticleRequest $request
+     * @return RedirectResponse
+     */
+    public function store(ArticleRequest $request)
     {
-
+        Article::create($request->all());
+        return redirect()->route('article.crud.index');
     }
 
+    /**
+     * @param Article $article
+     * @return Factory|View
+     */
     public function show(Article $article)
     {
-
+        return view('article.crud.show', compact('article'));
     }
 
     public function edit(Article $article)
