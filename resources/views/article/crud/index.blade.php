@@ -25,7 +25,12 @@
                                 <div class="btn-group btn-group-sm">
                                     <a href="{{ route('article.show', $article->slug) }}" class="btn btn-secondary">View</a>
                                     <a href="{{ route('article.crud.edit', $article) }}" class="btn btn-secondary">Edit</a>
-                                    <a href="" class="btn btn-secondary">Delete</a>
+
+                                    <form action="{{ route('article.crud.destroy', $article) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-secondary">Delete</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

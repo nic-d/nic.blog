@@ -64,8 +64,14 @@ class ArticleCrudController extends Controller
         return redirect()->route('article.crud.edit', $article);
     }
 
+    /**
+     * @param Article $article
+     * @return RedirectResponse
+     * @throws \Exception
+     */
     public function destroy(Article $article)
     {
-
+        $article->delete();
+        return redirect()->route('article.crud.index');
     }
 }
