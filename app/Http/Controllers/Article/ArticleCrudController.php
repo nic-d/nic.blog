@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Contracts\View\Factory;
+use App\Http\Repository\ArticleRepository;
 
 /**
  * Class ArticleCrudController
@@ -17,12 +18,25 @@ use Illuminate\Contracts\View\Factory;
  */
 class ArticleCrudController extends Controller
 {
+    /** @var ArticleRepository $articleRepository */
+    private $articleRepository;
+
+    /**
+     * ArticleCrudController constructor.
+     * @param ArticleRepository $articleRepository
+     */
+    public function __construct(ArticleRepository $articleRepository)
+    {
+        $this->articleRepository = $articleRepository;
+    }
+
     /**
      * @return Factory|View
      */
     public function index()
     {
         $articles = Article::orderBy('id', 'desc')->paginate();
+//        $articles = $this->articleRepository->paginate();
         return view('article.crud.index', compact('articles'));
     }
 
@@ -40,7 +54,7 @@ class ArticleCrudController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        Article::create($request->all());
+        $this->articleRepository->create($request->all());
         return redirect()->route('article.crud.index');
     }
 
@@ -60,7 +74,7 @@ class ArticleCrudController extends Controller
      */
     public function update(ArticleRequest $request, Article $article)
     {
-        $article->update($request->all());
+        $this->articleRepository->update($article->id, $request->all());
         return redirect()->route('article.crud.edit', $article);
     }
 
@@ -71,7 +85,7 @@ class ArticleCrudController extends Controller
      */
     public function destroy(Article $article)
     {
-        $article->delete();
+        $this->articleRepository->delete($article->id);
         return redirect()->route('article.crud.index');
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use League\CommonMark\ConverterInterface;
+use App\Http\Repository\ArticleRepository;
 
 /**
  * Class ArticleController
@@ -18,13 +19,19 @@ class ArticleController extends Controller
     /** @var ConverterInterface $converter */
     private $converter;
 
+    /** @var ArticleRepository $articleRepository */
+    private $articleRepository;
+
     /**
      * ArticleController constructor.
      * @param ConverterInterface $converter
+     * @param ArticleRepository $articleRepository
      */
-    public function __construct(ConverterInterface $converter)
+    public function __construct(ConverterInterface $converter, ArticleRepository $articleRepository)
     {
         $this->converter = $converter;
+        $this->articleRepository = $articleRepository;
+        $this->articleRepository->setModel(Article::class);
     }
 
     /**
