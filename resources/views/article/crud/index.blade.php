@@ -23,8 +23,8 @@
                             <td>{{ date('F m, Y', $article->created_at->timestamp) }}</td>
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a href="" class="btn btn-secondary">View</a>
-                                    <a href="" class="btn btn-secondary">Edit</a>
+                                    <a href="{{ route('article.show', $article->slug) }}" class="btn btn-secondary">View</a>
+                                    <a href="{{ route('article.crud.edit', $article) }}" class="btn btn-secondary">Edit</a>
                                     <a href="" class="btn btn-secondary">Delete</a>
                                 </div>
                             </td>

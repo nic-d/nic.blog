@@ -48,19 +48,20 @@ class ArticleCrudController extends Controller
      * @param Article $article
      * @return Factory|View
      */
-    public function show(Article $article)
-    {
-        return view('article.crud.show', compact('article'));
-    }
-
     public function edit(Article $article)
     {
-
+        return view('article.crud.edit', compact('article'));
     }
 
-    public function update(Request $request, Article $article)
+    /**
+     * @param ArticleRequest $request
+     * @param Article $article
+     * @return RedirectResponse
+     */
+    public function update(ArticleRequest $request, Article $article)
     {
-
+        $article->update($request->all());
+        return redirect()->route('article.crud.edit', $article);
     }
 
     public function destroy(Article $article)

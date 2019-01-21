@@ -23,7 +23,6 @@ Route::namespace('Article')->group(function () {
         Route::get('crud/article', 'ArticleCrudController@index')->name('article.crud.index');
         Route::get('crud/article/create', 'ArticleCrudController@create')->name('article.crud.create');
         Route::post('crud/article/store', 'ArticleCrudController@store')->name('article.crud.store');
-        Route::get('crud/article/{article}', 'ArticleCrudController@show')->name('article.crud.show');
         Route::get('crud/article/{article}/edit', 'ArticleCrudController@edit')->name('article.crud.edit');
         Route::patch('crud/article/{article}/update', 'ArticleCrudController@update')->name('article.crud.update');
         Route::delete('crud/article/{article}/destroy', 'ArticleCrudController@destroy')->name('article.crud.destroy');
