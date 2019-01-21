@@ -27,11 +27,13 @@ class ArticleController extends Controller
      * @param ConverterInterface $converter
      * @param ArticleRepository $articleRepository
      */
-    public function __construct(ConverterInterface $converter, ArticleRepository $articleRepository)
+    public function __construct(
+        ConverterInterface $converter,
+        ArticleRepository $articleRepository
+    )
     {
         $this->converter = $converter;
         $this->articleRepository = $articleRepository;
-        $this->articleRepository->setModel(Article::class);
     }
 
     /**
